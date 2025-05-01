@@ -15,8 +15,8 @@ Significant advances have been made in developing general-purpose embodied AI in
 
 ```bash
 uv sync
-python -m pip install git+https://github.com/MineDojo/MineCLIP
-python -m pip install gym==0.21.0
+uv run -m pip install git+https://github.com/MineDojo/MineCLIP
+uv run -m pip install gym==0.21.0
 ```
 
 And, follow the environment installation guide from [here](https://github.com/PKU-RL/MCEnv).
