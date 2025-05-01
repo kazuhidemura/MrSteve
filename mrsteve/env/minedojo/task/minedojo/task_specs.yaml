@@ -1,0 +1,259 @@
+log_water_bucket_aba_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 12000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    tasks:
+      - target_item: water_bucket
+        initial_inventory:
+          mainhand:
+            name: bucket
+      - target_item: log
+      - target_item: water_bucket
+        initial_inventory:
+          mainhand:
+            name: bucket
+
+log_beef_aba_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 12000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: cow
+        quantity: 10
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20] 
+    tasks:
+      - target_item: beef
+        initial_inventory:
+          mainhand:
+            name: diamond_sword
+      - target_item: log
+      - target_item: beef
+        initial_inventory:
+          mainhand:
+            name: diamond_sword
+
+log_wool_aba_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 12000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: sheep
+        quantity: 10
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20] 
+    tasks:
+      - target_item: wool
+        initial_inventory:
+          mainhand:
+            name: diamond_sword
+      - target_item: log
+      - target_item: wool
+        initial_inventory:
+          mainhand:
+            name: diamond_sword
+
+oak_stairs_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 3000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    tasks:
+      - target_item: oak_stairs
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+sign_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 3000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    tasks:
+      - target_item: sign
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+fence_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 3000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    tasks:
+      - target_item: fence
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+wooden_door_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 3000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    tasks:
+      - target_item: wooden_door
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+bed_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 6000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: sheep
+        quantity: 20
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20]
+    tasks:
+      - target_item: bed
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+painting_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 6000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: sheep
+        quantity: 20
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20]
+    tasks:
+      - target_item: painting
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+carpet_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 6000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: sheep
+        quantity: 20
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20]
+    tasks:
+      - target_item: carpet
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+item_frame_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 6000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: cow
+        quantity: 20
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20]
+    tasks:
+      - target_item: item_frame
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+leather_boots_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 6000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: cow
+        quantity: 20
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20]
+    tasks:
+      - target_item: leather_boots
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+leather_chestplate_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 6000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: cow
+        quantity: 20
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20]
+    tasks:
+      - target_item: leather_chestplate
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+leather_helmet_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 6000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: cow
+        quantity: 20
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20]
+    tasks:
+      - target_item: leather_helmet
+        initial_inventory:
+          mainhand:
+            name: diamond_axe
+
+leather_leggings_randinit:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 6000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    initial_mobs:
+      - name: cow
+        quantity: 20
+    initial_mob_spawn_range_low: [-20, 5, -20]
+    initial_mob_spawn_range_high: [20, 10, 20]
+    tasks:
+      - target_item: leather_leggings
+        initial_inventory:
+          mainhand:
+            name: diamond_axe

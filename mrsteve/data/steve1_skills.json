@@ -1,0 +1,85 @@
+{
+    "log": {
+        "explore": "near tree",
+        "execute": "cut a tree",
+        "place": "near pasture"
+    },
+
+    "leaves": {
+        "explore": "near tree",
+        "execute": "break a leaves",
+        "place": "near pasture"
+    },
+
+    "water_bucket": {
+        "explore": "near water",
+        "execute": "get water bucket",
+        "place": "near pasture"
+    },
+
+    "beef": {
+        "explore": "near cow",
+        "execute": "kill cow",
+        "place": "near pasture"
+    },
+
+    "milk_bucket": {
+        "explore": "near cow",
+        "execute": "get milk bucket",
+        "place": "near pasture"
+    },
+
+    "wool": {
+        "explore": "near sheep",
+        "execute": "kill sheep",
+        "place": "near pasture"
+    },
+
+    "sand": {
+        "explore": "near sand",
+        "execute": "get sand",
+        "place": "near desert"
+    },
+
+    "wheat_seeds": {
+        "explore": "near grass",
+        "execute": "collect seeds",
+        "place": "near pasture"
+    },
+
+    "flower": {
+        "explore": "near flower",
+        "execute": "break a flower",
+        "place": "near pasture"
+    },
+
+    "dirt": {
+        "explore": "near dirt",
+        "execute": "get dirt",
+        "place": "near pasture"
+    },
+
+    "leather": {
+        "explore": "near cow",
+        "execute": "kill cow",
+        "place": "near pasture"
+    },
+
+    "cobblestone": {
+        "explore": "near stone",
+        "execute": "dig down",
+        "place": "near pasture"
+    },
+
+    "iron_ore": {
+        "explore": "near stone",
+        "execute": "break the stone blocks and mine iron ore",
+        "place": "near pasture"
+    },
+
+    "coal": {
+        "explore": "near stone",
+        "execute": "break the stone blocks and mine coal",
+        "place": "near pasture"
+    }
+}

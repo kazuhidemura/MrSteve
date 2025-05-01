@@ -1,0 +1,17 @@
+defaults:
+  - _self_
+  - agent: mrsteve
+
+# environment
+task: log_water_bucket_aba_randinit
+
+# evaluation
+debug: false
+n_episodes: 100
+n_workers: 5
+
+hydra:
+  run:
+    dir: ./outputs/${task}/${agent.name}/${now:%Y-%m-%d_%H-%M-%S}
+  job:
+    chdir: false

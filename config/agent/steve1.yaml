@@ -1,0 +1,13 @@
+defaults:
+  - _base
+  - _self_
+
+name: steve1
+
+eval_entry: mrsteve.agent.controller.steve1.eval.main
+
+model: downloads/weights/vpt/2x.model
+weights: downloads/weights/steve1/steve1.weights
+prior_weights: downloads/weights/steve1/steve1_prior.pt
+cond_scale: 6.0
+greedy: false

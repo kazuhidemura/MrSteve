@@ -1,0 +1,66 @@
+defaults:
+  - _base
+  - _self_
+
+name: mrsteve
+
+eval_entry: mrsteve.agent.controller.mrsteve.eval.main
+
+verbose: false
+
+explore:
+  early_stopping: true
+  unc_map_range: 128
+  num_points: 4
+  fov_angle: 70
+  fov_radius: 10
+  action_radius: 15
+  reach_margin: 3
+
+vpt_nav:
+  model: downloads/weights/vpt/2x.model
+  weights: downloads/weights/vpt/vpt_nav.weights
+  cond_scale: null
+
+epmem:
+  skip_frames: 0
+  clip_batchsize: 1
+  memory_capacity: null
+
+  # place_event_memory, event_memory, place_memory, fifo_memory
+  memory_option: place_event_memory
+
+  fifo_memory:
+    cap: ${agent.epmem.memory_capacity}
+
+  place_memory:
+    cap: ${agent.epmem.memory_capacity}
+    cluster_size: 6
+    cluster_yaw: 60
+    topk: 30
+
+  event_memory:
+    cap: ${agent.epmem.memory_capacity}
+    update_freq: 100
+    cluster_freq: 20
+    thr: 73.5
+    thr2: 74.0
+    topk: 30
+
+  place_event_memory:
+    cap: ${agent.epmem.memory_capacity}
+    cluster_size: 6
+    cluster_yaw: 60
+    update_freq: 100
+    cluster_freq: 20
+    thr: 73.5
+    thr2: 74.0
+    topk: 30
+
+steve1:
+  model: downloads/weights/vpt/2x.model
+  weights: downloads/weights/steve1/steve1.weights
+  prior_weights: downloads/weights/steve1/steve1_prior.pt
+
+  cond_scale: 6.0
+  greedy: false
