@@ -2,7 +2,7 @@
 
 Author: {Junyeong Park, Junmo Cho}, Sungjin Ahn<br/>
 ***Published to ICLR 2025***<br/>
-[[paper]](asdf) [[project]](https://sites.google.com/view/mr-steve)
+[[paper]](https://openreview.net/forum?id=CjXaMI2kUH) [[project]](https://sites.google.com/view/mr-steve)
 
 ## Abstract
 
