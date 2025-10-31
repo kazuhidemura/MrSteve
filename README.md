@@ -1,4 +1,4 @@
-# MrSteve: Instruction-Following Agents in Minecraft with What-Where-When Memory
+<img width="113" height="13" alt="image" src="https://github.com/user-attachments/assets/014abdb7-a067-40de-b0ee-8d72452be62d" /># MrSteve: Instruction-Following Agents in Minecraft with What-Where-When Memory
 
 Author: {Junyeong Park, Junmo Cho}, Sungjin Ahn<br/>
 ***Published to ICLR 2025***<br/>
@@ -19,7 +19,7 @@ uv run -m pip install git+https://github.com/MineDojo/MineCLIP
 uv run -m pip install gym==0.21.0
 ```
 
-And, follow the environment installation guide from [here](https://github.com/PKU-RL/MCEnv).
+And, follow the environment installation guide from [here](https://github.com/kazuhidemura/MCEnv).
 
 ### Step 2. Download Pre-trained Model Weights
 
