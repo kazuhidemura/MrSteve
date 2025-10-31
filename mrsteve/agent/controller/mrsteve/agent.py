@@ -9,6 +9,7 @@ from scipy.spatial.distance import cdist
 from mrsteve.agent.controller.mrsteve.lib.epmem import EpisodicMemoryWrapper
 from mrsteve.agent.controller.steve1.agent import Steve1Agent, SKILLS
 from mrsteve.agent.controller.mrsteve.lib.vpt_nav import PointConditionalAgent, load_model_parameters
+from mrsteve.env.minedojo.wrappers import EvalTrackingWrapper
 
 
 with open("mrsteve/data/mineclip_thresholds.json", "rt") as f:
@@ -89,6 +90,9 @@ class MrSteveAgent:
 
         # To avoid struck
         self.prev_pos = None
+        self.eval_tracking_wrapper = self._find_eval_tracking_wrapper(epmem_env)
+        if self.eval_tracking_wrapper is not None:
+            self.eval_tracking_wrapper.set_agent_mode(self.mode.name)
 
     def get_action(self, obs):
         cur_pos = obs["location_stats"]["pos"]
@@ -256,6 +260,8 @@ class MrSteveAgent:
 
     def _task_change_hook(self, obs):
         self.cur_task = obs["task"]
+        if self.cur_task in SKILLS:
+            self.steve1_prompt = SKILLS[self.cur_task]["execute"]
         self._mode_switch(AgentMode.INVALID, obs)
 
     def _invoke_epmem_query(self, obs):
@@ -276,6 +282,9 @@ class MrSteveAgent:
             self._mode_switch(AgentMode.NAVIGATE, obs)
 
     def _mode_switch(self, new_mode: AgentMode, obs):
+        if new_mode != AgentMode.INVALID:
+            new_mode = AgentMode.EXECUTE
+
         if self.mode != new_mode:
             self.steve1.reset()
             self.vpt_nav.reset()
@@ -294,8 +303,11 @@ class MrSteveAgent:
             self.reached = True
             self.reach_time = 0
         elif new_mode == AgentMode.EXECUTE:
-            self._print(f"\tSteve1 prompt: {self.steve1_prompt}")
-            self.steve1.set_goal(self.steve1_prompt)
+            if self.steve1_prompt is None and self.cur_task in SKILLS:
+                self.steve1_prompt = SKILLS[self.cur_task]["execute"]
+            self._print(f"\tSteve1 prompt: Break the block in front of you and move forward to escape")
+            # task
+            self.steve1.set_goal("Break the block in front of you and move forward to escape")
             self.nav_target = None
             self.cam_target = None
         elif new_mode == AgentMode.NAVIGATE:
@@ -322,6 +334,8 @@ class MrSteveAgent:
                 "mode_count": self.mode_count,
                 "timestep": self.timestep
             })
+        if self.eval_tracking_wrapper is not None:
+            self.eval_tracking_wrapper.set_agent_mode(new_mode.name)
         self.mode = new_mode
         self.mode_count = 0
 
@@ -376,6 +390,16 @@ class MrSteveAgent:
         data = self.reach_logs
         with open(path, "wt") as f:
             json.dump(data, f, indent=4)
+
+    def _find_eval_tracking_wrapper(self, env):
+        current = env
+        depth = 0
+        while current is not None and depth < 32:
+            if isinstance(current, EvalTrackingWrapper):
+                return current
+            current = getattr(current, "env", None)
+            depth += 1
+        return None
 
     def _print(self, *args, **kwargs):
         if self.verbose:

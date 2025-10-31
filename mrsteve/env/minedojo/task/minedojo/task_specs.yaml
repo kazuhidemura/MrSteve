@@ -16,6 +16,18 @@ log_water_bucket_aba_randinit:
           mainhand:
             name: bucket
 
+just_fake_task:
+  task_id: "sequential"
+  terminal_specs:
+    max_steps: 12000
+  sim_specs:
+    generate_world_type: specified_biome
+    specified_biome: plains
+    tasks:
+      - target_item: log
+      - target_item: log
+      - target_item: log
+
 log_beef_aba_randinit:
   task_id: "sequential"
   terminal_specs:

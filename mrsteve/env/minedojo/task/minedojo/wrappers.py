@@ -19,20 +19,56 @@ def name_match(target_name, obs_name):
 # Occasionally doing a hard reset should prevent state shift
 class MinedojoSemifastResetWrapper(FastResetWrapper):
 
-    def __init__(self, *args, reset_freq=100, random_teleport_range=200, **kwargs):
-        super().__init__(*args, random_teleport_range=random_teleport_range, 
-            random_teleport_range_high=random_teleport_range, random_teleport_range_low=0, **kwargs)
+    def __init__(
+        self,
+        *args,
+        reset_freq=100,
+        random_teleport_range=200,
+        apply_start_position_on_reset=False,
+        fixed_start_position=None,
+        **kwargs,
+    ):
+        super().__init__(
+            *args,
+            random_teleport_range=random_teleport_range,
+            random_teleport_range_high=random_teleport_range,
+            random_teleport_range_low=0,
+            apply_start_position_on_reset=apply_start_position_on_reset,
+            **kwargs,
+        )
         self.reset_freq = reset_freq
         self.reset_count = 0
 
+        if fixed_start_position is not None:
+            self._start_position = dict(fixed_start_position)
+            self.init_position = {
+                "x": self._start_position["x"],
+                "y": self._start_position["y"],
+                "z": self._start_position["z"],
+            }
+
     def reset(self):
-        #pdb.set_trace()
         if self.reset_count < self.reset_freq:
             self.reset_count += 1
-            return super().reset()
+            obs = super().reset()
         else:
             self.reset_count = 0
-            return self.env.reset()
+            obs = self.env.reset()
+
+        if self._start_position is not None and not self._apply_start_position_on_reset:
+            obs, _, _, _ = self.teleport_agent(**self._start_position)
+            self.init_position = {
+                "x": self._start_position["x"],
+                "y": self._start_position["y"],
+                "z": self._start_position["z"],
+            }
+            self.birth_position = {
+                "x": self._start_position["x"],
+                "y": self._start_position["y"],
+                "z": self._start_position["z"],
+            }
+
+        return obs
 
 
 class MinedojoClipReward(ClipReward):

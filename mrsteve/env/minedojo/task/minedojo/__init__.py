@@ -10,6 +10,10 @@ from ..minedojo.wrappers import (
 )
 from .task_base import SequentialTask
 
+FIXED_WORLD_SEED = 1871
+SEED_OFFSET_BY_EPISODE = False
+FIXED_TELEPORT_POSITION = dict(x=-229, y=67, z=250, yaw=-126.7, pitch=7.4)
+
 
 _MetaTaskName2Class = {
     "Sequential": SequentialTask,
@@ -32,12 +36,13 @@ def _get_minedojo_specs(episode_id, task_id, task_specs, sim_specs):
 
     minedojo_specs.update(**sim_specs)
 
-    seed = 42 + episode_id
-    if minedojo_specs["generate_world_type"] == "specified_biome":
-        if "seed" not in minedojo_specs:
-            minedojo_specs["seed"] = seed
-        if "world_seed" not in minedojo_specs:
-            minedojo_specs["world_seed"] = seed
+    base_seed = FIXED_WORLD_SEED
+    seed = base_seed + episode_id if SEED_OFFSET_BY_EPISODE else base_seed
+    if minedojo_specs.get("generate_world_type") == "specified_biome":
+        minedojo_specs["seed"] = seed
+        minedojo_specs["world_seed"] = seed
+
+    minedojo_specs["start_position"] = FIXED_TELEPORT_POSITION.copy()
 
     return meta_task_cls, minedojo_specs
 
@@ -61,7 +66,8 @@ def _add_wrappers(
                 wrapped.env = MinedojoSemifastResetWrapper(
                     wrapped.env,
                     reset_freq=fast_reset,
-                    random_teleport_range=200
+                    random_teleport_range=200,
+                    fixed_start_position=FIXED_TELEPORT_POSITION.copy(),
                 )
                 break
             wrapped = wrapped.env
